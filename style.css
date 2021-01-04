@@ -1,0 +1,87 @@
+/*
+CSS file for Encrypter - VanillaJS
+
+Note -
+1. The CSS properties are set with respect to the mobile devices (small screens) by default, and we have used media keyword to change the CSS properties of the elements when we change to the desktop version
+
+Author : Rishav Das
+*/
+
+body {
+	background-image: url(images/body-background.jpg);
+	background-size: 100%;
+	font-family: Roboto;
+}
+.header {
+	width: 100%;
+	padding: 10px;
+	margin: -5px;
+	text-align: center;
+	font-size: 25px;
+	color: #34495e;
+	font-weight: bold;
+	background-color: #fff;
+	min-height: 50px;
+}
+.header .title {
+	margin: 5px;
+}
+textarea {
+	resize: none;
+	width: 80%;
+	height: 150px;
+	margin: 20px 10px;
+	padding: 5px;
+	font-size: 12.5px;
+	border-radius: 5px;
+	border: none;
+}
+input[name="password"] {
+	width: 60%;
+	padding: 10px 7.5px;
+}
+.container {
+	width: 85%;
+	margin: 20px 7%;
+	background-color: rgba(0, 0, 0, 0.6);
+	text-align: center;
+	padding: 10px;
+}
+button {
+	border: none;
+	border-radius: 5px;
+	padding: 10px 15px;
+	/*font-weight: bold;*/
+	margin: 2px 5px;
+}
+#encrypt-btn {
+	color: #000;
+	background-color: #2ecc71;
+	border: 1px solid #000;
+}
+#encrypt-btn:hover {
+	color: #2ecc71;
+	background-color: #000;
+	border: 1px solid #2ecc71;
+}
+#decrypt-btn {
+	color: #000;
+	background-color: #e74c3c;
+	border: 1px solid #000;
+}
+#decrypt-btn:hover {
+	color: #e74c3c;
+	background-color: #000;
+	border: 1px solid #e74c3c;
+}
+.footer {
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	background-color: #34495e;
+	min-height: 50px;
+	font-size: 17.5px;
+	padding: 10px;
+	margin: -5px;
+	border-top: 1px solid #fff;
+}
