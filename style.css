@@ -10,7 +10,7 @@ Author : Rishav Das
 body {
 	background-image: url(images/body-background.jpg);
 	background-size: 100%;
-	font-family: Roboto;
+	font-family: 'Courier New', Courier, monospace;
 }
 .header {
 	width: 100%;
