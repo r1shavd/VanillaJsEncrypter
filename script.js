@@ -6,23 +6,28 @@ Author : Rishav Das
 
 // The JavaScript code for the functionality of the web page ;-)
 
-const encrypt = (text, password) => {
-	/* The function to encrypt a string using a password string ;-) */
-
+const giveUniqueKey = (password) => {
 	// Generating the unique key from the user specified password string
-	let key = 0, n = 0;
+	let uniqueKey = 0, n = 0;
 	for (let i of password) {
 		if (n % 2 == 0) {
-			key += i.charCodeAt();
+			uniqueKey += i.charCodeAt();
 		} else {
-			key -= i.charCodeAt();
+			uniqueKey -= i.charCodeAt();
 		}
 		n += 1;
 	}
-	if (key < 0) {
-		key = key * (-1)
+	if (uniqueKey < 0) {
+		uniqueKey = uniqueKey * (-1)
 	}
-	key += password.length;
+	uniqueKey += password.length;
+
+	return uniqueKey;
+}
+const encrypt = (text, password) => {
+	/* The function to encrypt a string using a password string ;-) */
+
+	let key = giveUniqueKey(password);
 
 	// Jumping the characters of the text (plain)
 	let encryptedText = ``;
@@ -39,22 +44,9 @@ const encrypt = (text, password) => {
 
 const decrypt = (text, password) => {
 	/* The function to decrypt a string using a password string that was used to encrypt it */
-
-	// Generating the unique key from the user specified password string
-	let key = 0, n = 0;
-	for (let i of password) {
-		if (n % 2 == 0) {
-			key += i.charCodeAt();
-		} else {
-			key -= i.charCodeAt();
-		}
-		n += 1;
-	}
-	if (key < 0) {
-		key = key * (-1)
-	}
-	key += password.length;
-		
+	
+	let key = giveUniqueKey(password);
+	
 	// Changing the encoding of the encrypted format of the text to base64 from utf-8
 	text = atob(text);
 
