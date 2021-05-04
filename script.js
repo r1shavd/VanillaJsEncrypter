@@ -6,19 +6,21 @@ Author : Rishav Das
 
 // The JavaScript code for the functionality of the web page ;-)
 
+const emptyError = 'Your Text or Password is empty';
+
 const giveUniqueKey = (password) => {
 	// Generating the unique key from the user specified password string
-	let uniqueKey = 0, n = 0;
+	let uniqueKey = 0, isEven = true;
 	for (let i of password) {
-		if (n % 2 == 0) {
+		if (isEven) {
 			uniqueKey += i.charCodeAt();
 		} else {
 			uniqueKey -= i.charCodeAt();
 		}
-		n += 1;
+		isEven = !isEven; // It will make the isEven false if it is true and true if it is false
 	}
 	if (uniqueKey < 0) {
-		uniqueKey = uniqueKey * (-1)
+		uniqueKey = uniqueKey * (-1);
 	}
 	uniqueKey += password.length;
 
@@ -54,7 +56,6 @@ const decrypt = (text, password) => {
 	let decryptedText = ``;
 	text.split('').forEach((element, index) => {
 		// Iterating through the each characters of the plain text specified by the user
-
 		decryptedText += String.fromCharCode((element.charCodeAt() - key) % 256);
 	});
 
@@ -78,16 +79,21 @@ encryptBtn.addEventListener('click', (e) => {
 	const text = document.querySelector('textarea[name="text"]').value;
 	const password = document.querySelector('input[name="password"]').value;
 
-	// Encrypting the user inputted text and we will use the password as provided by the user
-	try {
-		let encryptedText = encrypt(text, password);
+	if(text && password){ // If text.length != 0 and password.length != 0 then we are continuing
+		// Encrypting the user inputted text and we will use the password as provided by the user
+		try {
+			let encryptedText = encrypt(text, password);
 
-		// If there are no errors then we display the result on the result textarea HTML element ( The result here is the encrypted text )
-		result.value = encryptedText;
-	} catch(error) {
-		// If there are any errors in the process, then we display the error on the result element
+			// If there are no errors then we display the result on the result textarea HTML element ( The result here is the encrypted text )
+			result.value = encryptedText;
+		} catch(error) {
+			// If there are any errors in the process, then we display the error on the result element
 
-		result.value = `ERROR : ${error}`;
+			result.value = `ERROR : ${error}`;
+		}
+	}
+	else{
+		alert(emptyError);
 	}
 });
 
@@ -100,15 +106,20 @@ decryptBtn.addEventListener('click', (e) => {
 	const text = document.querySelector('textarea[name="text"]').value;
 	const password = document.querySelector('input[name="password"]').value;
 
-	// Decrypting the user inputted text and we will use the password as provided by the user
-	try {
-		let decryptedText = decrypt(text, password);
+	if(text && password){ // If text.length != 0 and password.length != 0 then we are continuing
+		// Decrypting the user inputted text and we will use the password as provided by the user
+		try {
+			let decryptedText = decrypt(text, password);
 
-		// If there are no errors then we display the result on the result textarea HTML element ( The result here is the decrypted text )
-		result.value = decryptedText;
-	} catch(error) {
-		// If there are any errors in the process, then we display the error on the result element
+			// If there are no errors then we display the result on the result textarea HTML element ( The result here is the decrypted text )
+			result.value = decryptedText;
+		} catch(error) {
+			// If there are any errors in the process, then we display the error on the result element
 
-		result.value = `ERROR : ${error}`;
+			result.value = `ERROR : ${error}`;
+		}
+	}
+	else{
+		alert(emptyError);
 	}
 });
