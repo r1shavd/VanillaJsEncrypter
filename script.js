@@ -24,12 +24,13 @@ const giveUniqueKey = (password) => {
 	}
 	uniqueKey += password.length;
 
-	return uniqueKey;
+	return uniqueKey % 256;
 }
 const encrypt = (text, password) => {
 	/* The function to encrypt a string using a password string ;-) */
 
 	let key = giveUniqueKey(password);
+	console.log(key);
 
 	// Jumping the characters of the text (plain)
 	let encryptedText = ``;
@@ -56,7 +57,12 @@ const decrypt = (text, password) => {
 	let decryptedText = ``;
 	text.split('').forEach((element, index) => {
 		// Iterating through the each characters of the plain text specified by the user
-		decryptedText += String.fromCharCode((element.charCodeAt() - key) % 256);
+		if(element.charCodeAt() < key){
+			decryptedText += String.fromCharCode((element.charCodeAt() - key + 256) % 256);
+		}
+		else{
+			decryptedText += String.fromCharCode((element.charCodeAt() - key) % 256);
+		}
 	});
 
 	return decryptedText;
